@@ -7,21 +7,24 @@
       v-model.number="amount"
       placeholder="Enter Amount"
     /><br /><br />
-    <span>Convert From:</span>
-    <select v-model="convertfrom" style="width: 300px; font-size: 25px">
-      <option v-for="a in currencyfrom" v-bind:key="a.name">
-        {{ a.name }}
-      </option>
-    </select>
-    <span>Convert To:</span>
-    <select v-model="convertto" style="width: 300px; font-size: 25px">
-      <option v-for="a in currencyfrom" v-bind:key="a.name">
-        {{ a.name }}
-      </option></select
-    ><br /><br />
-    <span>
-      {{ amount }} {{ convertfrom }} equals {{ finalamount }}
-      {{ convertto }}
+    <div class="select_cover">
+      <span>Convert From:</span>
+      <select v-model="convertfrom">
+        <option v-for="a in currencyfrom" v-bind:key="a.name">
+          {{ a.name }}
+        </option>
+      </select>
+      <span>Convert To:</span>
+      <select v-model="convertto">
+        <option v-for="a in currencyfrom" v-bind:key="a.name">
+          {{ a.name }}
+        </option></select
+      ><br /><br />
+    </div>
+    <span
+      ><h2>
+        {{ amount }} {{ convertfrom }} equals {{ finalamount }} {{ convertto }}
+      </h2>
     </span>
   </div>
 </template>
@@ -49,7 +52,7 @@ export default {
       switch (from) {
         case "INR":
           if (to == "USD") {
-            final = this.amount * 0.016;
+            final = parseFloat(this.amount * 0.014).toFixed(2);
           }
 
           if (to == "INR") {
@@ -59,7 +62,7 @@ export default {
           break;
         case "USD":
           if (to == "INR") {
-            final = this.amount * 63.88;
+            final = parseFloat(this.amount * 72.96).toFixed(2);
           }
 
           if (to == "USD") {
@@ -82,6 +85,12 @@ export default {
   text-align: center;
   color: #2c3e50;
   margin-top: 60px;
+}
+
+select{
+  margin:15px;
+  width: 300px; 
+  font-size: 20px
 }
 input {
   margin: 2%;
