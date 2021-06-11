@@ -1,3 +1,3 @@
 import { createApp } from 'vue'
-import App from './Task_component.vue'
+import App from './Calculator.vue'
 createApp(App).mount('#app')
